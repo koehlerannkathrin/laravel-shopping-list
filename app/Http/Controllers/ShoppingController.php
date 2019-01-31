@@ -14,7 +14,10 @@ class ShoppingController extends Controller
      */
     public function index()
     {
-        return view('list.index');
+
+        $list = shopping::orderBy('id','desc')->get();
+
+        return view('list.index')->with('StoredLists', $list);
     }
 
     /**
@@ -36,13 +39,15 @@ class ShoppingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'newShoppinglistName' => 'required|min:5|max:225',
+            'newShoppinglistName'=>'required|min:2|max:225', //min 2 buchstaben, BSP. Ei
         ]);
 
         $list = new shopping;
 
         $list->name = $request->newShoppinglistName;
         $list->save();
+
+        return redirect()->route('shopping-list.index'); //von php artisan route:list
     }
 
     /**

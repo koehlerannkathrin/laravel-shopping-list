@@ -11,6 +11,18 @@
     <div class="row">
         <h1>ShoppingList</h1>
       </div>
+      {{-- display error message --}}
+      @if (count($errors) >0)
+      <div class="alert alert-danger">
+        <strong>Error:</strong>
+        <ul>
+          @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
+
       <form class=" " action="{{ route('shopping-list.store') }}" method="post">
         {{csrf_field()}}
         <div class="row">
@@ -20,8 +32,33 @@
           <div class="col-md-3">
             <input type="submit" class="btn btn-primary" value="Add something">
           </div>
-        </div>
       </form>
-  </div>
+    </div>
+  {{-- display the stored list items --}}
+  @if (count($StoredLists) > 0)
+    <table class="table">
+      <thead>
+        <th>List Item #</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        @foreach ($StoredLists as $StoredList)
+        <tr>
+          <th>{{ $StoredList->id }}</th>
+          <td>{{ $StoredList->name}}</td>
+          <td>Edit</td>
+          <td>Delete</td>
+        </tr>
+
+        @endforeach
+      </tbody>
+    </table>
+  @endif
+
+
+
+    </div>
   </body>
 </html>
