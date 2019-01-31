@@ -72,13 +72,10 @@
         @endforeach
       </tbody>
     </table>
-  @endif
-    <div class="row text-center">
-      {{ $StoredLists->links()}}
-
-    </div>
-
-
+        @endif
+      <div class="row text-center">
+        {{ $StoredLists->links()}}
+      </div>
     </div>
   </body>
 </html>

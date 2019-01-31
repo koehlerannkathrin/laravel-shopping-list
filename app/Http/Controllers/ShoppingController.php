@@ -16,7 +16,7 @@ class ShoppingController extends Controller
     public function index()
     {
 
-        $list = shopping::orderBy('id','desc')->paginate(5);
+        $list = shopping::orderBy('id','desc')->paginate(5); //paginate für die Seiten
 
         return view('list.index')->with('StoredLists', $list);
     }
