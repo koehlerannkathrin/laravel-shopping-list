@@ -16,7 +16,7 @@ class ShoppingController extends Controller
     public function index()
     {
 
-        $list = shopping::orderBy('id','desc')->get();
+        $list = shopping::orderBy('id','desc')->paginate(5);
 
         return view('list.index')->with('StoredLists', $list);
     }
@@ -71,9 +71,11 @@ class ShoppingController extends Controller
      * @param  \App\shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function edit(shopping $shopping)
+    public function edit($id)
     {
-        //
+        $list = shopping::find($id);
+
+        return view('list.edit')->with('listUnderEdit', $list);
     }
 
     /**
@@ -83,9 +85,21 @@ class ShoppingController extends Controller
      * @param  \App\shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, shopping $shopping)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+          'updatedListName' => 'required|min:2|max:255'
+        ]);
+
+        $list = shopping::find($id);
+
+        $list->name = $request->updatedListName;
+
+        $list->save();
+
+        Session::flash('success', 'List Item #' . $id .' has been successfully updated.');
+
+        return redirect()->route('shopping-list.index');
     }
 
     /**
@@ -98,6 +112,8 @@ class ShoppingController extends Controller
     {
         $list = shopping::find($id);
         $list->delete();
+
+        Session::flash('success', 'List Item #' . $id .' has been successfully deleted');
 
         return redirect()->route('shopping-list.index');
     }

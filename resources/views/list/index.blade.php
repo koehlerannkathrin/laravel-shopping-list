@@ -7,7 +7,7 @@
     <title>ShoppingList</title>
   </head>
   <body>
-  <div class="container">
+  <div class="container" style="margin-top: 20px;">
     <div class="row">
         <h1>ShoppingList</h1>
       </div>
@@ -46,7 +46,7 @@
     </div>
   {{-- display the stored list items --}}
   @if (count($StoredLists) > 0)
-    <table class="table">
+    <table class="table"style="margin-top: 20px;">
       <thead>
         <th>List Item #</th>
         <th>Name</th>
@@ -58,7 +58,8 @@
         <tr>
           <th>{{ $StoredList->id }}</th>
           <td>{{ $StoredList->name}}</td>
-          <td>Edit</td>
+          <td> <a class="btn btn-outline-secondary" href="{{route('shopping-list.edit', ['list'=>$StoredList->id]) }}">Edit</a>
+          </td>
           <td>
             <form action="{{ route('shopping-list.destroy', ['list'=>$StoredList->id])}}" method="post">
               {{csrf_field()}}
@@ -72,7 +73,10 @@
       </tbody>
     </table>
   @endif
+    <div class="row text-center">
+      {{ $StoredLists->links()}}
 
+    </div>
 
 
     </div>
