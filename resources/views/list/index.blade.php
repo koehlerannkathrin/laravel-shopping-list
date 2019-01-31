@@ -11,6 +11,16 @@
     <div class="row">
         <h1>ShoppingList</h1>
       </div>
+      {{-- display success message --}}
+      @if (Session::has('success'))
+      <div class="alert alert-success">
+        <strong>Success:</strong> {{Session::get('success')}}
+
+      </div>
+
+      @endif
+
+
       {{-- display error message --}}
       @if (count($errors) >0)
       <div class="alert alert-danger">
@@ -49,7 +59,13 @@
           <th>{{ $StoredList->id }}</th>
           <td>{{ $StoredList->name}}</td>
           <td>Edit</td>
-          <td>Delete</td>
+          <td>
+            <form action="{{ route('shopping-list.destroy', ['list'=>$StoredList->id])}}" method="post">
+              {{csrf_field()}}
+              <input type="hidden" name="_method" value="Delete">
+              <input type="submit" class="btn btn-danger" value="Delete">
+            </form>
+          </td>
         </tr>
 
         @endforeach

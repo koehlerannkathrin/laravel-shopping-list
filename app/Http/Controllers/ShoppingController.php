@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\shopping;
 use Illuminate\Http\Request;
+use Session;
 
 class ShoppingController extends Controller
 {
@@ -46,6 +47,9 @@ class ShoppingController extends Controller
 
         $list->name = $request->newShoppinglistName;
         $list->save();
+
+        Session::flash('success','Successfully add new item!' );
+
 
         return redirect()->route('shopping-list.index'); //von php artisan route:list
     }
@@ -90,8 +94,11 @@ class ShoppingController extends Controller
      * @param  \App\shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(shopping $shopping)
+    public function destroy($id)
     {
-        //
+        $list = shopping::find($id);
+        $list->delete();
+
+        return redirect()->route('shopping-list.index');
     }
 }
