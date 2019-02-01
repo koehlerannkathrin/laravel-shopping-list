@@ -15,8 +15,10 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-            <p>Here you can add items for your next purchase.</p>
-            <p>Enter an Article an Quantity.</p>
+            <p>Here you can add items for your next purchase. <br>
+              <strong>Enter an Article and Quantity.</strong>
+            </p>
+
         </div>
 
       </div>
@@ -63,7 +65,7 @@
     <table class="table"style="margin-top: 20px;">
       <thead>
 
-        <th>Number</th>
+        <th>Quantity</th>
         <th>Article</th>
         <th>Edit</th>
         <th>Delete</th>

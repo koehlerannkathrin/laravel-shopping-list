@@ -41,7 +41,7 @@ class ShoppingController extends Controller
     {
         $this->validate($request, [
             'newShoppinglistName'=>'required|min:2|max:225', //min 2 buchstaben, BSP. Ei
-            'newShoppinglistNumber'=>'required|min:2|max:225',
+            'newShoppinglistNumber'=>'required|min:1|max:225',
         ]);
 
         $list = new shopping;
@@ -50,7 +50,7 @@ class ShoppingController extends Controller
         $list->anzahl = $request->newShoppinglistNumber;
         $list->save();
 
-        Session::flash('success','Successfully add new item!' );
+        Session::flash('success','A new article has been added!' );
 
 
         return redirect()->route('shopping-list.index'); //von php artisan route:list
@@ -90,7 +90,8 @@ class ShoppingController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          'updatedListName' => 'required|min:2|max:255'
+          'updatedListName' => 'required|min:2|max:255',
+          'updatedListNumber' => 'required|min:1|max:255',
         ]);
 
         $list = shopping::find($id);
@@ -100,7 +101,7 @@ class ShoppingController extends Controller
 
         $list->save();
 
-        Session::flash('success', 'List Item #' . $id .' has been successfully updated.');
+        Session::flash('success', 'Article' .' has been successfully updated.');
 
         return redirect()->route('shopping-list.index');
     }
@@ -116,7 +117,7 @@ class ShoppingController extends Controller
         $list = shopping::find($id);
         $list->delete();
 
-        Session::flash('success', 'List Item #' . $id .' has been successfully deleted');
+        Session::flash('success', 'Article' . ' has been successfully deleted');
 
         return redirect()->route('shopping-list.index');
     }
