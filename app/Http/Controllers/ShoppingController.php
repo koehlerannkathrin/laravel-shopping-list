@@ -26,9 +26,9 @@ class ShoppingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -41,11 +41,13 @@ class ShoppingController extends Controller
     {
         $this->validate($request, [
             'newShoppinglistName'=>'required|min:2|max:225', //min 2 buchstaben, BSP. Ei
+            'newShoppinglistNumber'=>'required|min:2|max:225',
         ]);
 
         $list = new shopping;
 
         $list->name = $request->newShoppinglistName;
+        $list->anzahl = $request->newShoppinglistNumber;
         $list->save();
 
         Session::flash('success','Successfully add new item!' );
@@ -94,6 +96,7 @@ class ShoppingController extends Controller
         $list = shopping::find($id);
 
         $list->name = $request->updatedListName;
+        $list->anzahl = $request->updatedListNumber;
 
         $list->save();
 

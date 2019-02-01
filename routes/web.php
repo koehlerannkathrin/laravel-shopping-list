@@ -15,4 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Ajax
+Route::get('/getRequest', function(){
+    if(Request::ajax()){
+      return 'getRequest has loaded';
+    }
+});
+
 Route::resource('/shopping-list', 'ShoppingController');

@@ -37,8 +37,11 @@
           {{csrf_field()}}
           <input type="hidden" name="_method" value="PUT">
 
-          <div class="form-group">
+          <div class="form-group">Name
             <input type="text" name="updatedListName" class="form-control input-lg" value="{{ $listUnderEdit->name}}">
+          </div>
+          <div class="form-group">Nummer
+            <input type="text" name="updatedListNumber" class="form-control input-lg" value="{{ $listUnderEdit->anzahl}}">
           </div>
           <div class="form-group">
             <input type="submit" value="Save Changes" class="btn btn-success btn-lg">

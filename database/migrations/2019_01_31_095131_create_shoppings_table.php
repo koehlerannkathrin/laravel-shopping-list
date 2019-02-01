@@ -15,7 +15,8 @@ class CreateShoppingsTable extends Migration
     {
         Schema::create('shoppings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name'); 
+            $table->string('name');
+            $table->int('anzahl');
             $table->timestamps();
         });
     }
