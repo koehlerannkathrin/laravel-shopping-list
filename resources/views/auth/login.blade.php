@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                <div class="col-md-12 text-md-center">
+                <strong><p>You must log in before you can add anything to the list!</p></strong>
+                </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

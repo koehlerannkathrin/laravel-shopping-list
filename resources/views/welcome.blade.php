@@ -85,7 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="/shopping-list">Add something to the List</a>
+
+                  <a href="/home">Add something to your List</a>
+
 
                 </div>
             </div>

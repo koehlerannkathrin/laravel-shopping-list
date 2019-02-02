@@ -27,3 +27,5 @@ Route::resource('/shopping-list', 'ShoppingController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::post('/shopping-list/post', 'ShoppingController@store');
