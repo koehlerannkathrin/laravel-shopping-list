@@ -106,7 +106,7 @@
           </div>
           <div class="col-md-9" style="margin-top: 20px;">
             <p style="margin-bottom:2px;">Quantity</p>
-            <input type="text" name="newShoppinglistNumber" class="form-control" id="anzahlr">
+            <input type="text" name="newShoppinglistNumber" class="form-control" id="anzahl">
           </div>
           <div class="col-md-3">
             <input type="submit" class="btn btn-primary" value="Add something" id="getRequest">
@@ -159,16 +159,17 @@
     </div>
 
 
-    <script
+  <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 <!--
 <script>
 
 jQuery(document).ready(function(){
-           jQuery('#deletebtn').click(function(e){
+           jQuery('#getRequest').click(function(e){
               e.preventDefault();
               $.ajaxSetup({
                  headers: {

@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 //Ajax
+
 Route::get('/getRequest', function(){
     if(Request::ajax()){
       return 'getRequest has loaded';

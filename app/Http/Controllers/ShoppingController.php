@@ -50,11 +50,12 @@ class ShoppingController extends Controller
         $list->anzahl = $request->newShoppinglistNumber;
         $list->save();
 
-        Session::flash('success','Successfully add new Artciel' );
+        Session::flash('success','Successfully add new Article' );
 
 
         return redirect()->route('shopping-list.index'); //von php artisan route:list
 
+      //   return response()->json(['success'=>'Data is successfully added']);
 
     }
 
@@ -121,7 +122,7 @@ class ShoppingController extends Controller
 
         Session::flash('success', 'Article' . ' has been successfully deleted');
 
-        return redirect()->route('shopping-list.index'); 
+        return redirect()->route('shopping-list.index');
 
 
     }
