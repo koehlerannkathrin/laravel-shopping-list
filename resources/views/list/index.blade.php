@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8" name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8" >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title style="text-align:center;">ShoppingList</title>
   </head>
@@ -135,8 +136,9 @@
           <td>
             <form action="{{ route('shopping-list.destroy', ['list'=>$StoredList->id])}}" method="post">
               {{csrf_field()}}
-              <input type="hidden" name="_method" value="Delete">
-              <input type="submit" class="btn btn-danger" id="deletebtn" value="Delete" >
+              <input type="hidden" id="delete_id" name="_method" value="{{$StoredList->id}}" >
+              <!--<input type="submit" class="btn btn-danger" id="deletebtn" value="Delete" >-->
+              <button type="button" name="button" class="btn btn-danger" onclick="DeleteArticle(this)">Delete</button>
             </form>
           </td>
         </tr>
@@ -164,6 +166,52 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!--
+    <script>
+
+    $(".btn btn-danger").click(function(){
+      var id = $(this).data("id");
+      var token = $("meta[name='csrf-token']").attr("content");
+
+  $.ajax(
+  {
+      url: "deleteArticles/"+id,
+      type: 'DELETE',
+      data: {
+          "id": id,
+          "_token": token,
+      },
+      success: function (){
+          console.log("it Works");
+      }
+  });
+
+});
+</script> -->
+
+
+    <script>
+
+    DeleteArticle = function(button){
+      var row = jQuery(button).closest('tr');
+      var id = row.find('#delete_id').val();
+
+      jQuery.ajax({
+        header:{
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       },
+       url: '/shoppinglist/delete/' +id,
+       type: 'post',
+       data: {
+                    _token: '{!! csrf_token() !!}',
+                  },
+       success: function(){
+         row.remove();
+       }
+     });
+   };
+    </script>
+
 
 <!--
 <script>

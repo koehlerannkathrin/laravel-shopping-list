@@ -117,13 +117,18 @@ class ShoppingController extends Controller
      */
     public function destroy($id)
     {
+
         $list = shopping::find($id);
         $list->delete();
 
-        Session::flash('success', 'Article' . ' has been successfully deleted');
+        /*return response()->json([
+        'success' => 'Record deleted successfully!'
+      ]);
+*/
+      //  Session::flash('success', 'Article' . ' has been successfully deleted');
 
-        return redirect()->route('shopping-list.index');
+        //return redirect()->route('shopping-list.index');
 
 
-    }
+  }
 }

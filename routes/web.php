@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 
 //Ajax
-
+/*
 Route::get('/getRequest', function(){
     if(Request::ajax()){
       return 'getRequest has loaded';
     }
-});
+});*/
 
 Route::resource('/shopping-list', 'ShoppingController');
 
@@ -30,3 +30,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::post('/shopping-list/post', 'ShoppingController@store');
+Route::post('/shoppinglist/delete/{id}', 'ShoppingController@destroy');
