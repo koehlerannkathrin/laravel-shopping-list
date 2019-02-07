@@ -125,7 +125,7 @@ class ShoppingController extends Controller
         'success' => 'Record deleted successfully!'
       ]);
 */
-      //  Session::flash('success', 'Article' . ' has been successfully deleted');
+        Session::flash('success', 'Article' . ' has been successfully deleted');
 
         //return redirect()->route('shopping-list.index');
 
